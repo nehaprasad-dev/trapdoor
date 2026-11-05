@@ -20,26 +20,28 @@ export function ScanReport({ result }: { result: ScanResult }) {
         <VerdictBadge severity={result.verdict} />
       </div>
 
-      {presentFiles.length === 0 ? (
-        <p className="text-muted text-sm">
-          No AI-agent config files found (.claude/settings.json, .cursor/mcp.json, AGENTS.md, CLAUDE.md). Nothing will
-          auto-run when this repo is opened in an agent.
-        </p>
-      ) : (
-        <div className="flex flex-col gap-2">
-          <h2 className="text-sm font-medium text-muted">Files found</h2>
-          <ul className="flex flex-wrap gap-2">
-            {presentFiles.map((f) => (
-              <li key={f.path} className="text-xs rounded-md bg-code-bg border border-border px-2 py-1 font-mono">
-                {f.path}
-              </li>
-            ))}
-          </ul>
-          {!hasFindings && (
-            <p className="text-muted text-sm">These files contain nothing that runs automatically or looks risky.</p>
-          )}
-        </div>
-      )}
+      <div className="flex flex-col gap-2">
+        <h2 className="text-sm font-medium text-muted">
+          Checked {result.files.length} locations · {presentFiles.length} found
+        </h2>
+        <ul className="rounded-lg border border-border divide-y divide-border">
+          {result.files.map((f) => (
+            <li key={f.path} className="flex items-center justify-between gap-3 px-3 py-2 text-sm">
+              <span className={`font-mono break-all ${f.present ? "text-foreground" : "text-subtle"}`}>{f.path}</span>
+              <span className={`text-xs shrink-0 ${f.present ? "text-foreground" : "text-subtle"}`}>
+                {f.present ? "found" : "not present"}
+              </span>
+            </li>
+          ))}
+        </ul>
+        {!hasFindings && (
+          <p className="text-muted text-sm">
+            {presentFiles.length === 0
+              ? "This repo has no AI-agent config, so nothing runs automatically when you open it in an agent."
+              : "The config files found contain nothing that runs automatically or looks risky."}
+          </p>
+        )}
+      </div>
 
       {hasFindings && (
         <div className="flex flex-col gap-3">

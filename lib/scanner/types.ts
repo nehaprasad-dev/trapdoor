@@ -3,11 +3,12 @@ export type Severity = "safe" | "suspicious" | "risky";
 export type FindingSource =
   | ".claude/settings.json"
   | ".claude/settings.local.json"
+  | ".cursor/environment.json"
   | ".cursor/mcp.json"
   | ".cursor/rules"
   | "AGENTS.md"
   | "CLAUDE.md"
-  | "mcp.json"
+  | ".mcp.json"
   | ".vscode/mcp.json";
 
 export interface Finding {
