@@ -9,7 +9,7 @@ const KNOWN_PATHS: Array<{ path: string; kind: "claude-settings" | "mcp" | "doc"
   { path: ".claude/settings.json", kind: "claude-settings" },
   { path: ".claude/settings.local.json", kind: "claude-settings" },
   { path: ".cursor/mcp.json", kind: "mcp" },
-  { path: "mcp.json", kind: "mcp" },
+  { path: ".mcp.json", kind: "mcp" },
   { path: ".vscode/mcp.json", kind: "mcp" },
   { path: "AGENTS.md", kind: "doc" },
   { path: "CLAUDE.md", kind: "doc" },

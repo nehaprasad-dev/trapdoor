@@ -7,7 +7,7 @@ export type FindingSource =
   | ".cursor/rules"
   | "AGENTS.md"
   | "CLAUDE.md"
-  | "mcp.json"
+  | ".mcp.json"
   | ".vscode/mcp.json";
 
 export interface Finding {
